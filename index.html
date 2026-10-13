@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hệ thống Quản lý Học tập - Dashboard</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Header ứng dụng -->
+    <header class="app-header">
+        <div class="header-brand">
+            <h1>🎓 E-Learning Dashboard</h1>
+            <p>Hệ thống quản lý khóa học và hỗ trợ giảng dạy trực tuyến</p>
+        </div>
+        <div class="user-profile">
+            <span>Xin chào, Giảng viên</span>
+        </div>
+    </header>
+
+    <div class="app-layout">
+        <!-- Sidebar: Menu điều hướng hệ thống -->
+        <aside id="sidebar" class="sidebar">
+            <div class="menu-title">Danh mục quản lý</div>
+            <ul class="sidebar-menu">
+                <li class="active">📊 Tổng quan</li>
+                <li>📚 Quản lý Khóa học</li>
+                <li>📝 Bài tập & Đánh giá</li>
+                <li>⚙️ Cài đặt hệ thống</li>
+            </ul>
+        </aside>
+
+        <!-- Nội dung chính -->
+        <main class="main-content">
+            <!-- Nút điều khiển ẩn/hiện Sidebar -->
+            <button class="btn btn-secondary toggle-btn" onclick="toggleSidebar()">☰ Thu gọn Menu</button>
+
+            <div class="dashboard-grid">
+                
+                <!-- Phần 1: Trình chiếu ảnh banner khóa học -->
+                <section class="card">
+                    <h2>🖼️ Giới thiệu học phần</h2>
+                    <div class="gallery-box">
+                        <img id="photo" src="images/1.jpg" alt="Ảnh số 1" class="banner-img">
+                        <p id="caption" class="caption-text">Ảnh 1 / 4</p>
+                    </div>
+                    <div class="btn-group">
+                        <button class="btn btn-outline" onclick="previousPhoto()">❮ Trước</button>
+                        <button class="btn btn-outline" onclick="nextPhoto()">Sau ❯</button>
+                    </div>
+                </section>
+
+                <!-- Phần 2: Hộp thoại trợ giúp / Hướng dẫn nhanh -->
+                <section class="card">
+                    <h2>💡 Hướng dẫn hệ thống</h2>
+                    <p class="section-desc">Xem quy chế và hướng dẫn sử dụng các tính năng dành cho giảng viên.</p>
+                    <button class="btn btn-primary" onclick="openPopup()">Xem Hướng Dẫn</button>
+                </section>
+
+                <!-- Phần 3: Ghi chú / Thông báo nhanh cho lớp học -->
+                <section class="card">
+                    <h2>📌 Bảng thông báo lớp học</h2>
+                    <div class="input-group">
+                        <input id="messageInput" class="form-input" placeholder="Nhập thông báo mới cho sinh viên...">
+                        <button class="btn btn-success" onclick="addNotice()">Đăng</button>
+                    </div>
+                    <ul id="noticeList" class="notice-list"></ul>
+                </section>
+
+                <!-- Phần 4: Tiến độ hoàn thành bài giảng & Lưu dữ liệu -->
+                <section class="card">
+                    <h2>📈 Tiến độ cập nhật điểm số</h2>
+                    <div class="progress-box">
+                        <div class="track"><div id="progress"></div></div>
+                        <span id="progressText" class="progress-percent">0%</span>
+                    </div>
+                    <div class="btn-stack">
+                        <button class="btn btn-warning" onclick="startLoading()">Đồng bộ dữ liệu</button>
+                        <button class="btn btn-primary" onclick="showToast()">Lưu thay đổi</button>
+                    </div>
+                </section>
+
+                <!-- Phần 5: Câu hỏi thường gặp (FAQ cho sinh viên) -->
+                <section class="card full-width">
+                    <h2>❓ Câu hỏi thường gặp (FAQ)</h2>
+                    <div class="accordion">
+                        <div class="accordion-item">
+                            <div class="question" onclick="toggleAnswer('answer1')">
+                                What is HTML? <span class="arrow">▼</span>
+                            </div>
+                            <div class="answer" id="answer1">
+                                HTML is used to create the structure of web pages.
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <div class="question" onclick="toggleAnswer('answer2')">
+                                What is CSS? <span class="arrow">▼</span>
+                            </div>
+                            <div class="answer" id="answer2">
+                                CSS is used to style web pages.
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- Popup Modal: Hướng dẫn chi tiết -->
+    <div id="overlay" class="overlay hidden">
+        <div class="popup">
+            <div class="popup-header">
+                <h3>Trợ giúp hệ thống LMS</h3>
+            </div>
+            <div class="popup-body">
+                <p>Đây là một model mẫu, có thể thay đổi nội dung tùy sở thích của bạn</p>
+            </div>
+            <div class="popup-footer">
+                <button class="btn btn-danger" onclick="closePopup()">Đóng lại</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification: Trạng thái thao tác -->
+    <div id="toast" class="toast hidden">Thay đổi đã được lưu thành công!</div>
+
+    <script src="script.js"></script>
+</body>
+</html>
